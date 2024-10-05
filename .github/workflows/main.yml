@@ -1,0 +1,64 @@
+import random
+
+class RobloxPasswordGuesser:
+    """
+    Class to handle the Roblox password guessing operations.
+
+    Attributes:
+    - password: str
+        The actual password that needs to be guessed.
+    """
+
+    def __init__(self, password: str):
+        """
+        Constructor to instantiate the RobloxPasswordGuesser class.
+
+        Parameters:
+        - password: str
+            The actual password that needs to be guessed.
+        """
+
+        self.password = password
+
+    def guess_password(self):
+        """
+        Function to guess the password.
+
+        Returns:
+        - str:
+            The guessed password.
+        """
+
+        # Generating a random password guess
+        guess = self.generate_random_password()
+
+        # Loop until the guess matches the actual password
+        while guess != self.password:
+            guess = self.generate_random_password()
+
+        return guess
+
+    def generate_random_password(self):
+        """
+        Function to generate a random password guess.
+
+        Returns:
+        - str:
+            The randomly generated password guess.
+        """
+
+        # List of characters to choose from for the password guess
+        characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+
+        # Generating a random password guess of length 8
+        guess = ''.join(random.choice(characters) for _ in range(8))
+
+        return guess
+
+# Example of using the RobloxPasswordGuesser class:
+
+# Example: Guessing the password
+actual_password = "Roblox123"
+guesser = RobloxPasswordGuesser(actual_password)
+guessed_password = guesser.guess_password()
+print(f"The password is: {guessed_password}")
